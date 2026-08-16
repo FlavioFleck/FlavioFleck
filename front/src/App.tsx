@@ -1,27 +1,62 @@
-import { motion } from "motion/react"
-import { ChevronDown } from "lucide-react"
+import { useState } from "react"
+import { AnimatePresence, motion } from "motion/react"
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  X,
+} from "lucide-react"
+
+import status01 from "./assets/images/status/status_01.png"
+import status02 from "./assets/images/status/status_02.png"
+import status03 from "./assets/images/status/status_03.png"
+import status04 from "./assets/images/status/status_04.png"
 
 function App() {
+  const [selectedProject, setSelectedProject] = useState<number | null>(null)
+  const [currentImage, setCurrentImage] = useState(0)
+
   const projects = [
     {
-      image: "/projects/project-1.png",
-      title: "STATUS",
+      title: "Status",
       description:
-        "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "A web application focused on providing a modern and intuitive experience. I worked across both frontend and backend, implementing features and business logic.",
+      technologies: ["AngularJS", "TypeScript", "NodeJS", "MYSQL"],
+      images: [status01, status02, status03, status04]
     },
     {
-      image: "/projects/project-2.png",
-      title: "STATUS",
+      title: "Mixes",
       description:
-        "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "A product-oriented application built to solve real-world problems through a clean interface and well-structured architecture.",
+      technologies: ["AngularJS", "TypeScript", "NodeJS", "MYSQL"],
+      images: [
+        "/projects/project-1/home.png",
+        "/projects/project-1/dashboard.png",
+        "/projects/project-1/profile.png",
+      ]
     },
     {
-      image: "/projects/project-3.png",
-      title: "STATUS",
+      title: "Low Stress Trading",
       description:
-        "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "A project where I explored different technologies while focusing on usability, performance and creating a reliable user experience.",
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind", "MongoDB"],
+      images: [
+        "/projects/project-1/home.png",
+        "/projects/project-1/dashboard.png",
+        "/projects/project-1/profile.png",
+      ]
     },
   ]
+
+  const openProject = (projectIndex: number) => {
+    setSelectedProject(projectIndex)
+    setCurrentImage(0)
+  }
+
+  const closeProject = () => {
+    setSelectedProject(null)
+    setCurrentImage(0)
+  }
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#202020] text-white">
@@ -158,7 +193,8 @@ function App() {
         >
           {/* Instagram */}
           <motion.a
-            href="#"
+            href="https://www.instagram.com/flafleck/"
+            target="_blank"
             whileHover={{
               scale: 1.2,
               x: -3,
@@ -172,7 +208,8 @@ function App() {
 
           {/* WhatsApp */}
           <motion.a
-            href="#"
+            href="https://wa.me/5511964549902"
+            target="_blank"
             whileHover={{
               scale: 1.2,
               x: -3,
@@ -279,16 +316,16 @@ function App() {
         </div>
       </motion.section>
 
-      {/* PROJECTS */}
+     {/* PROJECTS */}
       <motion.section
         id="projects"
         initial="hidden"
         whileInView="visible"
         viewport={{
           once: true,
-          amount: 0.15,
+          amount: 0.1,
         }}
-        className="mx-auto max-w-6xl border-t border-white/10 px-6 py-16 sm:px-10"
+        className="mx-auto max-w-6xl border-t border-white/10 px-6 py-24 sm:px-10"
       >
         {/* Section title */}
         <motion.div
@@ -305,111 +342,151 @@ function App() {
               },
             },
           }}
-          className="mb-10 text-center"
+          className="mb-20 text-center"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-lime-400">
             Portfolio
           </p>
 
-          <h2 className="mt-2 text-2xl font-bold">
-            Some of my work
+          <h2 className="mt-2 text-3xl font-bold">
+            Selected work
           </h2>
+
+          <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-white/50">
+            A selection of projects I've worked on throughout my
+            professional and academic journey.
+          </p>
         </motion.div>
 
         {/* Projects */}
-        <motion.div
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.15,
-              },
-            },
-          }}
-          className="grid grid-cols-1 gap-8 md:grid-cols-3"
-        >
+        <div className="space-y-32">
           {projects.map((project, index) => (
             <motion.article
-              key={index}
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: 50,
-                },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.7,
-                    ease: "easeOut",
-                  },
-                },
+              key={project.title}
+              initial={{
+                opacity: 0,
+                y: 60,
               }}
-              whileHover={{
-                y: -8,
-                transition: {
-                  duration: 0.25,
-                },
+              whileInView={{
+                opacity: 1,
+                y: 0,
               }}
-              className="group cursor-pointer"
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+              }}
+              className="group"
             >
-              {/* Image */}
-              <motion.div
-                className="aspect-[1.7/1] overflow-hidden bg-[#292929]"
-                whileHover="hover"
+              <div
+                className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${
+                  index % 2 !== 0 ? "lg:[&>div:first-child]:order-2" : ""
+                }`}
               >
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  variants={{
-                    hover: {
-                      scale: 1.05,
-                    },
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    ease: "easeOut",
-                  }}
-                  className="h-full w-full object-cover"
-                />
-              </motion.div>
-
-              {/* Info */}
-              <div className="px-2 pt-4 text-center">
-                <motion.h2
-                  className="text-sm font-medium"
-                  whileHover={{
-                    color: "#a3e635",
-                  }}
+                {/* Project image */}
+                <motion.button
+                  type="button"
+                  onClick={() => openProject(index)}
+                  whileHover="hover"
+                  className="group cursor-pointer relative block w-full overflow-hidden bg-[#292929] text-left"
                 >
-                  {project.title}
-                </motion.h2>
+                  <motion.img
+                    src={project.images[0]}
+                    alt={project.title}
+                    variants={{
+                      hover: {
+                        scale: 1.05,
+                      },
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: "easeOut",
+                    }}
+                    className="aspect-[16/10] h-full w-full object-cover"
+                  />
 
-                <p className="mx-auto mt-3 max-w-[280px] text-[9px] leading-[1.55] text-white/60">
-                  {project.description}
-                </p>
+                  {/* Overlay */}
+                  <motion.div
+                    variants={{
+                      hover: {
+                        opacity: 1,
+                      },
+                    }}
+                    initial={{
+                      opacity: 0,
+                    }}
+                    className="absolute inset-0 flex items-center justify-center bg-black/40"
+                  >
+                    <span className="border border-white/40 bg-black/30 px-5 py-2 text-xs font-medium backdrop-blur-sm">
+                      View project
+                    </span>
+                  </motion.div>
+                </motion.button>
+
+                {/* Project information */}
+                <div
+                  className={`${
+                    index % 2 !== 0 ? "lg:text-right" : ""
+                  }`}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-lime-400">
+                    0{index + 1} / Project
+                  </p>
+
+                  <h3 className="mt-3 text-3xl font-bold">
+                    {project.title}
+                  </h3>
+
+                  <p
+                    className={`mt-5 max-w-lg text-sm leading-7 text-white/55 ${
+                      index % 2 !== 0 ? "lg:ml-auto" : ""
+                    }`}
+                  >
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div
+                    className={`mt-6 flex flex-wrap gap-2 ${
+                      index % 2 !== 0 ? "lg:justify-end" : ""
+                    }`}
+                  >
+                    {project.technologies.map((technology) => (
+                      <span
+                        key={technology}
+                        className="border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] text-white/60"
+                      >
+                        {technology}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.article>
           ))}
-        </motion.div>
+        </div>
 
         {/* CTA */}
         <motion.div
-          variants={{
-            hidden: {
-              opacity: 0,
-              y: 20,
-            },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                delay: 0.3,
-                duration: 0.6,
-              },
-            },
+          initial={{
+            opacity: 0,
+            y: 20,
           }}
-          className="mt-16 flex flex-col items-center"
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            delay: 0.2,
+            duration: 0.6,
+          }}
+          className="mt-32 flex flex-col items-center"
         >
           <motion.a
             href="#contact"
@@ -492,6 +569,166 @@ function App() {
           </motion.a>
         </motion.div>
       </motion.section>
+
+      <AnimatePresence>
+        {selectedProject !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-md sm:p-8"
+            onClick={closeProject}
+          >
+            {/* Modal */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.95,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.95,
+              }}
+              transition={{
+                duration: 0.3,
+              }}
+              className="relative flex h-full w-full max-w-7xl flex-col items-center justify-center"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {/* Close */}
+              <motion.button
+                type="button"
+                onClick={closeProject}
+                whileHover={{
+                  scale: 1.1,
+                  rotate: 90,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                className="absolute right-2 top-2 z-20 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition hover:bg-white/20 sm:right-0 sm:top-0"
+              >
+                <X className="h-5 w-5" />
+              </motion.button>
+
+              {/* Project title */}
+              <div className="absolute left-0 top-0 z-10">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-lime-400">
+                  {String(selectedProject + 1).padStart(2, "0")} / Project
+                </p>
+
+                <h3 className="mt-1 text-xl font-bold">
+                  {projects[selectedProject].title}
+                </h3>
+              </div>
+
+              {/* Image area */}
+              <div className="flex h-full w-full items-center justify-center px-8 py-16 sm:px-16">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentImage}
+                    src={projects[selectedProject].images[currentImage]}
+                    alt={`${projects[selectedProject].title} screenshot ${currentImage + 1}`}
+                    initial={{
+                      opacity: 0,
+                      x: 30,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      x: -30,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: "easeOut",
+                    }}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </AnimatePresence>
+              </div>
+
+              {/* Previous */}
+              {projects[selectedProject].images.length > 1 && (
+                <motion.button
+                  type="button"
+                  onClick={() =>
+                    setCurrentImage((current) =>
+                      current === 0
+                        ? projects[selectedProject].images.length - 1
+                        : current - 1
+                    )
+                  }
+                  whileHover={{
+                    scale: 1.1,
+                    x: -3,
+                  }}
+                  whileTap={{
+                    scale: 0.9,
+                  }}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition hover:bg-white/20 sm:left-2"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </motion.button>
+              )}
+
+              {/* Next */}
+              {projects[selectedProject].images.length > 1 && (
+                <motion.button
+                  type="button"
+                  onClick={() =>
+                    setCurrentImage((current) =>
+                      current === projects[selectedProject].images.length - 1
+                        ? 0
+                        : current + 1
+                    )
+                  }
+                  whileHover={{
+                    scale: 1.1,
+                    x: 3,
+                  }}
+                  whileTap={{
+                    scale: 0.9,
+                  }}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition hover:bg-white/20 sm:right-2"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </motion.button>
+              )}
+
+              {/* Indicators */}
+              {projects[selectedProject].images.length > 1 && (
+                <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-2">
+                  {projects[selectedProject].images.map((_, imageIndex) => (
+                    <button
+                      key={imageIndex}
+                      type="button"
+                      onClick={() => setCurrentImage(imageIndex)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        currentImage === imageIndex
+                          ? "w-6 bg-lime-400"
+                          : "w-1.5 bg-white/30 hover:bg-white/60"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Counter */}
+              <div className="absolute bottom-2 right-0 text-[10px] text-white/40">
+                {currentImage + 1} / {projects[selectedProject].images.length}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   )
 }
