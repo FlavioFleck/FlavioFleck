@@ -12,6 +12,10 @@ import status02 from "./assets/images/status/status_02.png"
 import status03 from "./assets/images/status/status_03.png"
 import status04 from "./assets/images/status/status_04.png"
 
+import mixes01 from "./assets/images/mixes/mixes_01.png"
+import mixes02 from "./assets/images/mixes/mixes_02.png"
+import mixes03 from "./assets/images/mixes/mixes_03.png"
+
 function App() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const [currentImage, setCurrentImage] = useState(0)
@@ -20,32 +24,17 @@ function App() {
     {
       title: "Status",
       description:
-        "A web application focused on providing a modern and intuitive experience. I worked across both frontend and backend, implementing features and business logic.",
+        "An academic project developed to promote a beauty salon through product sales, customer management, and public image.",
       technologies: ["AngularJS", "TypeScript", "NodeJS", "MYSQL"],
       images: [status01, status02, status03, status04]
     },
     {
       title: "Mixes",
       description:
-        "A product-oriented application built to solve real-world problems through a clean interface and well-structured architecture.",
+        "Academic project of social network aimed at an audience interested in sharing opinions about music.",
       technologies: ["AngularJS", "TypeScript", "NodeJS", "MYSQL"],
-      images: [
-        "/projects/project-1/home.png",
-        "/projects/project-1/dashboard.png",
-        "/projects/project-1/profile.png",
-      ]
-    },
-    {
-      title: "Low Stress Trading",
-      description:
-        "A project where I explored different technologies while focusing on usability, performance and creating a reliable user experience.",
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind", "MongoDB"],
-      images: [
-        "/projects/project-1/home.png",
-        "/projects/project-1/dashboard.png",
-        "/projects/project-1/profile.png",
-      ]
-    },
+      images: [mixes01, mixes02, mixes03]
+    }
   ]
 
   const openProject = (projectIndex: number) => {
@@ -223,7 +212,7 @@ function App() {
 
           {/* Email */}
           <motion.a
-            href="mailto:your@email.com"
+            href="mailto:flaviofleck17@gmail.com"
             whileHover={{
               scale: 1.2,
               x: -3,
