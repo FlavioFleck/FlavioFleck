@@ -14,7 +14,24 @@ import status04 from "./assets/images/status/status_04.png"
 
 import mixes01 from "./assets/images/mixes/mixes_01.png"
 import mixes02 from "./assets/images/mixes/mixes_02.png"
-import mixes03 from "./assets/images/mixes/mixes_03.png"
+import mixes04 from "./assets/images/mixes/mixes_04.png"
+import mixes05 from "./assets/images/mixes/mixes_05.png"
+import mixes06 from "./assets/images/mixes/mixes_06.png"
+import mixes07 from "./assets/images/mixes/mixes_07.png"
+
+import gameboxd01 from "./assets/images/gameboxd/gameboxd_01.png"
+import gameboxd02 from "./assets/images/gameboxd/gameboxd_02.png"
+import gameboxd03 from "./assets/images/gameboxd/gameboxd_03.png"
+import gameboxd04 from "./assets/images/gameboxd/gameboxd_04.png"
+import gameboxd05 from "./assets/images/gameboxd/gameboxd_05.png"
+import gameboxd06 from "./assets/images/gameboxd/gameboxd_06.png"
+import gameboxd07 from "./assets/images/gameboxd/gameboxd_07.png"
+import gameboxd08 from "./assets/images/gameboxd/gameboxd_08.png"
+import gameboxd09 from "./assets/images/gameboxd/gameboxd_09.png"
+import gameboxd10 from "./assets/images/gameboxd/gameboxd_10.png"
+
+import gameboxdweb01 from "./assets/images/gameboxd/gameboxd_web_01.png"
+import gameboxdweb02 from "./assets/images/gameboxd/gameboxd_web_02.png"
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
@@ -24,16 +41,30 @@ function App() {
     {
       title: "Status",
       description:
-        "An academic project developed to promote a beauty salon through product sales, customer management, and public image.",
+        "An academic project developed to promote a beauty salon through product sales, customer management, and public image. (Developed in 2025)",
       technologies: ["AngularJS", "TypeScript", "NodeJS", "MYSQL"],
       images: [status01, status02, status03, status04]
     },
     {
       title: "Mixes",
       description:
-        "Academic project of social network aimed at an audience interested in sharing opinions about music.",
+        "Academic project of social network aimed at an audience interested in sharing opinions about music. (Developed in 2025)",
       technologies: ["AngularJS", "TypeScript", "NodeJS", "MYSQL"],
-      images: [mixes01, mixes02, mixes03]
+      images: [mixes01, mixes02, mixes07, mixes04, mixes05, mixes06]
+    },
+    {
+      title: "Gameboxd(Mobile)",
+      description:
+        "An academic project for a mobile app focused on the sale and distribution of games, aiming for a simple, intuitive layout with easily locatable on-screen elements. (Developed in 2025)",
+      technologies: ["AngularJS", "TypeScript", "NodeJS", "MYSQL"],
+      images: [gameboxd01, gameboxd02, gameboxd03, gameboxd04, gameboxd05, gameboxd06, gameboxd07, gameboxd08, gameboxd09, gameboxd10]
+    },
+    {
+      title: "Gameboxd(Web)",
+      description:
+        "A personal project for a social network focused on gamers, designed around sharing opinions and screenshots, and enabling users to create their own showcase. (Still under development)",
+      technologies: ["ReactJS", "TypeScript", "NodeJS", "MYSQL", "Tailwind"],
+      images: [gameboxdweb01, gameboxdweb02]
     }
   ]
 
