@@ -574,7 +574,7 @@ function App() {
           </p>
 
           <motion.a
-            href="mailto:your@email.com"
+            href="mailto:flaviofleck17@email.com"
             whileHover={{
               scale: 1.05,
               backgroundColor: "#a3e635",
